@@ -1,3 +1,5 @@
+import json
+
 from unittest import TestCase
 
 from app import app, games
@@ -27,11 +29,27 @@ class BoggleAppTestCase(TestCase):
 
             self.assertEqual(response.status_code, 200)
             self.assertIn('<form id="newWordForm">', html)
-            # test that you're getting a template
 
     def test_api_new_game(self):
         """Test starting a new game."""
 
         with self.client as client:
-            ...
+            resp = client.post("/api/new-game")
+            print(f"resp = {resp}")
+            resp_dict = json.loads(resp.data)
+            # print(resp_dict)
+            # html = resp.get_data(as_text=True)
+        
+            self.assertIsInstance(resp_dict, dict)
+            self.assertIsInstance(resp_dict["gameId"], str)
+            self.assertIsInstance(resp_dict["board"], list)
+
+            for item in resp_dict["board"]:
+                self.assertIsInstance(item, list)
             # write a test for this route
+
+# try:
+#     json_object = json.loads(ini_string)
+#     print ("Is valid json? true")
+# except ValueError as e:
+#     print ("Is valid json? false")
