@@ -23,7 +23,12 @@ def new_game():
 
     # get a unique string id for the board we're creating
     game_id = str(uuid4())
+    print(game_id)
     game = BoggleGame()
     games[game_id] = game
 
-    return {"gameId": "need-real-id", "board": "need-real-board"}
+    # use that game which has key of board and pass board as variable into dict below
+    # print(game_id, game.board)
+    game_info = jsonify(gameId=game_id, board=game.board)
+
+    return game_info

@@ -31,6 +31,7 @@ class WordList:
     """
     def check_word(self, word):
         """Is word in word list?
+        
             >>> my_words = WordList()
             >>> my_words.check_word("HIPPO")
             True
