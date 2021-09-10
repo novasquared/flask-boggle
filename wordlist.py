@@ -26,9 +26,21 @@ class WordList:
         dict_file.close()
 
         return words
+    """
 
+    """
     def check_word(self, word):
-        """Is word in word list?"""
+        """Is word in word list?
+            >>> my_words = WordList()
+            >>> my_words.check_word("HIPPO")
+            True
+            >>> my_words.check_word("hippo")
+            False
+            >>> my_words.check_word("XUZ")
+            False
+            >>> my_words.check_word("12")
+            False
+        """
 
         return word in self.words
 
